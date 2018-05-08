@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ReactMap",
+  "name": "React Neighborhood Map app by Alex Parra",
   "icons": [
     {
       "src": "favicon.ico",
