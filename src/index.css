@@ -28,3 +28,10 @@
 .page-404 a:hover {
   background-color: rgba(255,255,255, .4);
 }
+
+.page-main {}
+
+#map {
+  width: 100vw;
+  height: 100vh;
+}
