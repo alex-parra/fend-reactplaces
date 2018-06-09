@@ -1,33 +1,26 @@
 import React from 'react'
+import _ from 'lodash'
+import Map from './Map'
+import Places from './Places'
+import allPlaces from '../places-list'
 
 class PageMain extends React.Component {
 
-  mapRef = null
   state = {
-    map: null
+    placesShown: allPlaces
   }
 
-  componentDidMount() {
-    const script = document.createElement('script');
-    script.onload = () => this.loadMap()
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAOXHjUlR6SCA4No1qdCcWNOnH95xLDkRM&libraries=places';
-    document.head.appendChild(script);
-  }
-
-  loadMap = () => {
-    let map = new window.google.maps.Map(this.mapRef, {
-      center: {lat: 40.758896, lng: -73.985130},
-      zoom: 12,
-      mapTypeId: 'roadmap',
-    });
-    this.setState(prevState => ({map: map}))
+  filterPlaces(search) {
+    var searchRegex = new RegExp(_.escapeRegExp(search), 'i');
+    this.setState({placesShown: _.filter(allPlaces, p => searchRegex.test(_.deburr(p.name)))})
   }
 
   render() {
 
     return (
       <div className="page-main">
-        <div id="map" ref={el => this.mapRef = el} role="application"></div>
+        <Map places={this.state.placesShown} />
+        <Places places={this.state.placesShown} searchHandler={this.filterPlaces.bind(this)} />
       </div>
     )
 

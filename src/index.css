@@ -1,5 +1,21 @@
-.app {
+* {
+  box-sizing: border-box;
+}
 
+input {
+  width: 100%;
+  max-width: 100%;
+  border:1px solid #eee;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 4px 5px;
+  background-color: #fff;
+}
+
+input:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,.25);
 }
 
 .page-404 {
@@ -13,7 +29,7 @@
 .page-404 h1 {
   font-size: 3rem;
   padding: 0;
-  margin: 0 0 40px;
+  margin: 0 0 36px;
 }
 
 .page-404 a {
@@ -34,4 +50,80 @@
 #map {
   width: 100vw;
   height: 100vh;
+}
+
+.places {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  min-height: 100vh;
+  padding: 4px;
+  background-color: #45619B;
+  font-size: 16px;
+  transition: transform 100ms ease-out;
+  width: calc(100vw - 36px);
+  max-width: 240px;
+}
+
+.places.hide {
+  transform: translate(100%, 0);
+}
+
+.places .filter {
+  margin-bottom: 2px;
+}
+
+.places .place {
+  padding: 6px;
+  padding-right: 20px;
+  cursor: pointer;
+  color: rgba(255,255,255,.75);
+}
+
+.places .place + .place {
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.places .place:focus,
+.places .place:active,
+.places .place:hover {
+  color: #fff;
+  background-color: rgba(255,255,255,.1);
+}
+
+.places button,
+.places button:focus {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background-color: #45619B;
+  border:none;
+  font-size: 0;
+  width: 36px;
+  height: 36px;
+  outline: none;
+  color: rgba(255,255,255, .75);
+  border-radius: 0 0 0 3px;
+}
+
+.places button:hover {
+  cursor: pointer;
+  color: rgba(255,255,255, .95)
+}
+
+.places button::after,
+.places button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 1px;
+  transform: translate(-50%,-50%) rotate(-45deg);
+  background-color: currentColor;
+}
+
+.places button::after {
+  transform: translate(-50%,-50%) rotate(45deg);
 }
