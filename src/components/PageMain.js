@@ -56,7 +56,9 @@ class PageMain extends React.Component {
   render() {
     return (
       <div className="page-main">
-        <GoogleMap places={this.state.placesShown} zoom={this.state.zoom} placeFocused={this.state.placeFocused} mapClickHandler={this.focusPlace} mapZoomHandler={this.mapZoomHandler} markerClickHandler={this.focusPlace} />
+        {this.allPlaces.length &&
+          <GoogleMap places={this.state.placesShown} zoom={this.state.zoom} placeFocused={this.state.placeFocused} mapClickHandler={this.focusPlace} mapZoomHandler={this.mapZoomHandler} markerClickHandler={this.focusPlace} />
+        }
         <Controls showing={this.state.showControls} places={this.state.placesShown} searchHandler={this.filterPlaces} zoomHandler={this.adjustZoom} placeHandler={this.focusPlace} placeFocused={this.state.placeFocused} toggleHandler={this.showControlsHandler} />
       </div>
     )

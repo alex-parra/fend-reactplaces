@@ -38,7 +38,7 @@ class GoogleMap extends React.Component {
       this.resetFocusedMarker()
       m.defaultIcon = m.marker.getIcon()
       if( m !== undefined ) {
-        m.marker.setIcon(markerActiveImg)
+        m.marker.setIcon({url: markerActiveImg, size: new window.google.maps.Size(48, 48)})
         this.state.map.panTo(m.marker.getPosition())
       }
     } else if( nextProps.placeFocused === undefined ) {
