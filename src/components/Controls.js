@@ -8,14 +8,18 @@ import PlaceDetail from './PlaceDetail'
 class Controls extends React.Component {
 
   searchInput = null
-  state = {
-    searchQuery: ''
-  }
 
   // Search input handler. Debounced for performance. Propagate to parent
   handleInputChange = _.debounce(() => {
-    this.props.searchHandler && this.props.searchHandler(this.searchInput.value.trim())
+    const searchQuery = this.searchInput.value.trim()
+    this.props.searchHandler && this.props.searchHandler(searchQuery)
   }, 250)
+
+  searchClear = () => {
+    this.searchInput.value = ''
+    this.searchInput.focus()
+    this.props.searchHandler && this.props.searchHandler('')
+  }
 
   // Show/hide the search and places list
   toogleControls = (ev) => {
@@ -50,7 +54,10 @@ class Controls extends React.Component {
       <div className={'places ' + (!this.props.showing ? 'hide' : 'show')}>
         <div className="filter">
           {!this.props.placeFocused
-            ? <input type="text" autoFocus defaultValue={this.state.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
+            ? <div className="search">
+                <input type="text" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
+                <button onClick={this.searchClear}>Clear</button>
+              </div>
             : <button onClick={this.handleReturnList}>return to list</button>
           }
         </div>
@@ -88,6 +95,7 @@ Controls.propTypes = {
   showing: PropTypes.bool,
   places: PropTypes.array,
   placeFocused: PropTypes.number,
+  searchQuery: PropTypes.string,
   searchHandler: PropTypes.func,
   toggleHandler: PropTypes.func,
   zoomHandler: PropTypes.func,

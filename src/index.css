@@ -21,6 +21,10 @@ input:focus {
   border-color: #80bdff;
 }
 
+#app {
+  height: 100%;
+}
+
 .page-404 {
   background-color: #cb0000;
   text-align: center;
@@ -48,11 +52,24 @@ input:focus {
   background-color: rgba(255,255,255, .4);
 }
 
-.page-main {}
+.page-main {
+  position: relative;
+  height: 100%;
+}
+
+.page-main .loading {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 40px;
+  font-weight: bold;
+  color:rgba(0,0,0,.1);
+}
 
 #map {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 }
 
 .places {
@@ -81,7 +98,60 @@ input:focus {
   flex: 0 0 auto;
 }
 
-.places .filter button {
+.places .search {
+  position: relative;
+}
+
+.places .search button {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  color: rgba(0,0,0,0);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-size: 9px;
+  border: none;
+  padding: 0;
+}
+
+.places .search button::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #ddd;
+  border-radius: 50px;
+  width: 18px;
+  height: 18px;
+  margin-right: -1px;
+}
+
+.places .search button::after {
+  font-size: 14px;
+  line-height: 0;
+  display: block;
+  content: "\00d7";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin-top: -1px;
+  color: #fff;
+}
+
+.places .search button:hover {
+  cursor: pointer;
+}
+
+.places .search button:hover::before {
+  background-color: #bbb;
+}
+
+.places .filter > button {
   border: none;
   background-color: rgba(255,255,255,.1);
   display: block;
@@ -92,11 +162,11 @@ input:focus {
   font-size: 12px;
 }
 
-.places .filter button::before {
+.places .filter > button::before {
   content: "‹ ";
 }
 
-.places .filter button:hover {
+.places .filter > button:hover {
   cursor: pointer;
   color:#fff;
   background-color: rgba(255,255,255,.2);

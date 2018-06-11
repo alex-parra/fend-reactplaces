@@ -6,27 +6,23 @@ import MyPlaces from '../MyPlaces'
 
 class PageMain extends React.Component {
 
-  // Store the original, full list of places
-  allPlaces = []
-
   state = {
     zoom: 11,
-    placesShown: [],
+    places: [],
     placeFocused: null,
-    showControls: false
+    showControls: false,
+    searchQuery: ''
   }
 
   componentDidMount() {
     MyPlaces.load().then(places => {
-      this.allPlaces = places
-      this.setState({placesShown: places})
+      this.setState({places: places})
     })
   }
 
   // set places shown to those that match the search query
-  filterPlaces = (search) => {
-    var searchRegex = new RegExp(_.escapeRegExp(search), 'i');
-    this.setState({placeFocused: undefined, placesShown: _.filter(this.allPlaces, p => searchRegex.test(_.deburr(p.name)))})
+  searchHandler = (search) => {
+    this.setState({searchQuery: search})
   }
 
   // Change map zoom. Callback of zoom buttons click
@@ -54,12 +50,20 @@ class PageMain extends React.Component {
   }
 
   render() {
+    const searchRegex = new RegExp(_.escapeRegExp(this.state.searchQuery), 'i')
+    const placesShown = _.filter(this.state.places, p => searchRegex.test(_.deburr(p.name)))
     return (
       <div className="page-main">
-        {this.allPlaces.length > 0 &&
-          <GoogleMap places={this.state.placesShown} zoom={this.state.zoom} placeFocused={this.state.placeFocused} mapClickHandler={this.focusPlace} mapZoomHandler={this.mapZoomHandler} markerClickHandler={this.focusPlace} />
+        {this.state.places.length > 0
+          ? (
+            <React.Fragment>
+              <GoogleMap places={placesShown} zoom={this.state.zoom} placeFocused={this.state.placeFocused} mapClickHandler={this.focusPlace} mapZoomHandler={this.mapZoomHandler} markerClickHandler={this.focusPlace} />
+              <Controls showing={this.state.showControls} places={placesShown} searchQuery={this.state.searchQuery} searchHandler={this.searchHandler} zoomHandler={this.adjustZoom} placeHandler={this.focusPlace} placeFocused={this.state.placeFocused} toggleHandler={this.showControlsHandler} />
+            </React.Fragment>
+          ) : (
+            <div className="loading">Loading...</div>
+          )
         }
-        <Controls showing={this.state.showControls} places={this.state.placesShown} searchHandler={this.filterPlaces} zoomHandler={this.adjustZoom} placeHandler={this.focusPlace} placeFocused={this.state.placeFocused} toggleHandler={this.showControlsHandler} />
       </div>
     )
   }
