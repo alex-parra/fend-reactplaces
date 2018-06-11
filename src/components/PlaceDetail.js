@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
 
 class PlaceDetail extends React.Component {
@@ -77,6 +78,10 @@ class PlaceDetail extends React.Component {
     )
   }
 
+}
+
+PlaceDetail.propTypes = {
+  place: PropTypes.object
 }
 
 export default PlaceDetail

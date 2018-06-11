@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
 import IconPlus from '../imgs/plus-svg'
 import IconMinus from '../imgs/minus-svg'
@@ -18,7 +19,6 @@ class Controls extends React.Component {
 
   // Show/hide the search and places list
   toogleControls = (ev) => {
-    //this.setState(prevState => ({hidden:!prevState.hidden}))
     this.props.toggleHandler && this.props.toggleHandler(!this.props.showing)
   }
 
@@ -77,6 +77,16 @@ class Controls extends React.Component {
 
   }
 
+}
+
+Controls.propTypes = {
+  showing: PropTypes.bool,
+  places: PropTypes.array,
+  placeFocused: PropTypes.number,
+  searchHandler: PropTypes.func,
+  toggleHandler: PropTypes.func,
+  zoomHandler: PropTypes.func,
+  placeHandler: PropTypes.func,
 }
 
 export default Controls

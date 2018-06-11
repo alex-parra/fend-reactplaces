@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
 
 class GoogleMap extends React.Component {
@@ -116,7 +117,15 @@ class GoogleMap extends React.Component {
     )
   }
 
-
 } // class GoogleMap
+
+
+GoogleMap.propTypes = {
+  zoom: PropTypes.number,
+  places: PropTypes.array,
+  placeFocused: PropTypes.number,
+  mapClickHandler: PropTypes.func,
+  mapZoomHandler: PropTypes.func,
+}
 
 export default GoogleMap
