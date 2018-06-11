@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import IconPlus from '../imgs/plus-svg'
 import IconMinus from '../imgs/minus-svg'
+import IconClose from '../imgs/close-svg'
 import PlaceDetail from './PlaceDetail'
 
 class Controls extends React.Component {
@@ -56,7 +57,7 @@ class Controls extends React.Component {
           {!this.props.placeFocused
             ? <div className="search">
                 <input type="text" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
-                <button onClick={this.searchClear}>Clear</button>
+                <button onClick={this.searchClear}><IconClose /></button>
               </div>
             : <button onClick={this.handleReturnList}>return to list</button>
           }
@@ -79,7 +80,7 @@ class Controls extends React.Component {
           ? <PlaceDetail place={placeFocusedData} key={this.props.placeFocused} />
           : this.props.places.map(place => (
               <div className="place" onClick={() => this.handlePlaceClick(place)} key={'place-'+place.index}>
-                {place.index} › {place.name}
+                {place.index}. {place.name}
               </div>
             ))
         }

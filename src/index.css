@@ -3,18 +3,18 @@
 }
 
 input {
-  width: 100%;
-  max-width: 100%;
-  border:1px solid transparent;
-  border-radius: 2px;
-  font-size: 16px;
-  padding: 4px 5px;
   background-color: #fff;
+  border-radius: 2px;
+  border:1px solid transparent;
+  font-size: 16px;
+  max-width: 100%;
+  padding: 4px 5px;
+  width: 100%;
 }
 
 *:focus {
-  outline: none;
   box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+  outline: none;
 }
 
 input:focus {
@@ -27,25 +27,25 @@ input:focus {
 
 .page-404 {
   background-color: #cb0000;
-  text-align: center;
-  padding: 20vh 0;
   color: #fff;
   min-height: 100vh;
+  padding: 20vh 0;
+  text-align: center;
 }
 
 .page-404 h1 {
   font-size: 3rem;
-  padding: 0;
   margin: 0 0 36px;
+  padding: 0;
 }
 
 .page-404 a {
-  font-size: 1.6rem;
   background-color: rgba(255,255,255, .2);
-  padding: .7em 2em;
-  color: #fff;
-  text-decoration: none;
   border-radius: 3px;
+  color: #fff;
+  font-size: 1.6rem;
+  padding: .7em 2em;
+  text-decoration: none;
 }
 
 .page-404 a:hover {
@@ -53,40 +53,40 @@ input:focus {
 }
 
 .page-main {
-  position: relative;
   height: 100%;
+  position: relative;
 }
 
 .page-main .loading {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  color:rgba(0,0,0,.1);
   font-size: 40px;
   font-weight: bold;
-  color:rgba(0,0,0,.1);
+  left: 50%;
+  position: absolute;
+  top: 40%;
+  transform: translate(-50%,-50%);
 }
 
 #map {
-  width: 100vw;
   height: 100%;
+  width: 100vw;
 }
 
 .places {
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  padding: 4px;
   background-color:#2d5be3;
-  font-size: 14px;
-  transition: transform 300ms cubic-bezier(0, 0.9, 0.3, 1);
-  transform: translate(0,0) translate3d(0,0,0);
-  width: calc(100vw - 42px);
-  max-width: 350px;
+  bottom: 0;
   display: flex;
   flex-direction: column;
+  font-size: 14px;
+  max-width: 350px;
+  padding: 4px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transform: translate(0,0) translate3d(0,0,0);
+  transition: transform 300ms cubic-bezier(0, 0.9, 0.3, 1);
+  width: calc(100vw - 42px);
+  z-index: 99;
 }
 
 .places.hide {
@@ -94,8 +94,8 @@ input:focus {
 }
 
 .places .filter {
-  margin-bottom: 2px;
   flex: 0 0 auto;
+  padding: 1px 2px 2px;
 }
 
 .places .search {
@@ -103,63 +103,34 @@ input:focus {
 }
 
 .places .search button {
+  border: none;
+  bottom: 1px;
+  color: rgba(0,0,0,.2);
+  padding: 0 5px;
   position: absolute;
   right: 1px;
   top: 1px;
-  bottom: 1px;
-  color: rgba(0,0,0,0);
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  font-size: 9px;
-  border: none;
-  padding: 0;
 }
 
-.places .search button::before {
+.places .search button svg {
   display: block;
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background-color: #ddd;
-  border-radius: 50px;
-  width: 18px;
-  height: 18px;
-  margin-right: -1px;
-}
-
-.places .search button::after {
-  font-size: 14px;
-  line-height: 0;
-  display: block;
-  content: "\00d7";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  margin-top: -1px;
-  color: #fff;
+  width: 16px;
 }
 
 .places .search button:hover {
+  color: rgba(0,0,0,.4);
   cursor: pointer;
 }
 
-.places .search button:hover::before {
-  background-color: #bbb;
-}
-
 .places .filter > button {
-  border: none;
   background-color: rgba(255,255,255,.1);
-  display: block;
-  width: 100%;
-  padding: 6px 14px 7px;
   border-radius: 3px;
+  border: none;
   color: rgba(255,255,255,.9);
+  display: block;
   font-size: 12px;
+  padding: 6px 14px 7px;
+  width: 100%;
 }
 
 .places .filter > button::before {
@@ -167,21 +138,21 @@ input:focus {
 }
 
 .places .filter > button:hover {
-  cursor: pointer;
-  color:#fff;
   background-color: rgba(255,255,255,.2);
+  color:#fff;
+  cursor: pointer;
 }
 
 .places .place {
-  padding: 9px 6px;
-  padding-right: 20px;
-  cursor: pointer;
   color: rgba(255,255,255,.75);
+  cursor: pointer;
+  padding-right: 20px;
+  padding: 9px 6px;
 }
 
 .places .place.active {
-  font-weight: bold;
   color: #fff;
+  font-weight: bold;
 }
 
 .places .place + .place {
@@ -191,46 +162,46 @@ input:focus {
 .places .place:focus,
 .places .place:active,
 .places .place:hover {
-  color: #fff;
   background-color: rgba(255,255,255,.1);
+  color: #fff;
 }
 
 .places .toggle,
 .places .toggle:focus {
-  position: absolute;
-  top: 33px;
-  right: 100%;
   background-color:#2d5be3;
-  border:none;
-  font-size: 0;
-  width: 38px;
-  height: 36px;
-  color: rgba(255,255,255, .75);
   border-radius: 3px 0 0 3px;
+  border:none;
+  color: rgba(255,255,255, .75);
+  font-size: 0;
+  height: 36px;
   line-height: 0;
+  position: absolute;
+  right: 100%;
+  top: 34px;
+  width: 38px;
 }
 
 .places .toggle:hover {
+  color: rgba(255,255,255, .95);
   cursor: pointer;
-  color: rgba(255,255,255, .95)
 }
 
 .places .toggle span,
 .places .toggle::after,
 .places .toggle::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 8px;
-  right: 7px;
-  height: 1px;
   background-color: currentColor;
-  transition: transform 300ms cubic-bezier(0, 0.9, 0.3, 1) 200ms;
+  content: "";
+  height: 1px;
+  left: 8px;
+  position: absolute;
+  right: 7px;
+  top: 50%;
   transform: translate(0,0) translate3d(0,0,0) rotate(0);
+  transition: transform 300ms cubic-bezier(0, 0.9, 0.3, 1) 200ms;
 }
 
 .places .toggle span {
-  margin-top: -1px
+  margin-top: -1px;
 }
 
 .places .toggle::before {
@@ -256,25 +227,25 @@ input:focus {
 }
 
 .places .zoom {
-  position: absolute;
-  right: 100%;
   bottom: 15px;
-  padding: 0 4px 0 0;
   color: #fff;
   font-size: 16px;
+  padding: 0 4px 0 0;
+  position: absolute;
+  right: 100%;
 }
 
 .places .zoom button {
+  background-color:#2d5be3;
+  border-radius: 3px;
+  border: none;
+  color: inherit;
+  cursor: pointer;
   display: block;
+  font-size: 1em;
+  height: 34px;
   position: relative;
   width: 34px;
-  height: 34px;
-  color: inherit;
-  font-size: 1em;
-  background-color:#2d5be3;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
 }
 
 .places .zoom button + button {
@@ -282,14 +253,14 @@ input:focus {
 }
 
 .places .zoom button svg {
+  left: 50%;
+  line-height: 0;
+  max-width: 100%;
   opacity: .75;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%,-50%);
-  line-height: 0;
   width: 12px;
-  max-width: 100%;
 }
 
 .places .zoom button:hover svg {
@@ -297,43 +268,43 @@ input:focus {
 }
 
 .placeDetail {
+  -webkit-overflow-scrolling: touch;
   color:rgba(255,255,255,.95);
-  padding: 10px;
   flex: 1 1 auto;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
+  padding: 10px;
 }
 
 .placeDetail h1 {
-  margin: 0;
   color: #fff;
+  margin: 0;
 }
 
 .foursquareLoading {
-  padding: 10px 0;
   color: #fff;
   opacity: .75;
+  padding: 10px 0;
 }
 
 .fourSquareData {
-  padding: 10px 0;
   font-size: 16px;
+  padding: 10px 0;
 }
 
 .fourSquareData .photo {
+  background-color: rgba(255,255,255,.15);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 3px;
   display: block;
   padding-bottom: 50%;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 3px;
-  background-color: rgba(255,255,255,.15);
 }
 
 .fourSquareData ul {
   list-style: none;
-  padding: 0;
   margin-bottom: 40px;
+  padding: 0;
 }
 
 .fourSquareData li + li {
@@ -342,19 +313,19 @@ input:focus {
 
 .fourSquareData li > strong {
   display: block;
-  text-transform: uppercase;
-  opacity: .75;
   font-size: 11px;
+  opacity: .75;
+  text-transform: uppercase;
 }
 
 .fourSquareData > a {
   background-color:#ffc800;
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
   border-radius: 3px;
-  padding: 12px 20px;
+  color: #fff;
   display: block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
   text-align: center;
   text-decoration: none;
 }
