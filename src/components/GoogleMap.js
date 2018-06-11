@@ -19,7 +19,7 @@ class GoogleMap extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     // Update the visible markers. Only if places count changed
-    if( this.state.markers && this.state.markers.length !== nextProps.places.length ) {
+    if( this.state.markers && this.props.places.length !== nextProps.places.length ) {
       this.state.markers.forEach(m => {
         const p = _.find(nextProps.places, {index: m.index})
         m.marker.setVisible(p !== undefined)
@@ -34,11 +34,12 @@ class GoogleMap extends React.Component {
     // Set the focused marker. Only when it changed.
     if( nextProps.placeFocused && this.props.placeFocused !== nextProps.placeFocused ) {
       const markerActiveImg = require('../imgs/focused.svg')
+      const markerActiveImgSize = new window.google.maps.Size(48, 48)
       const m = _.find(this.state.markers, {index: nextProps.placeFocused})
       this.resetFocusedMarker()
-      m.defaultIcon = m.marker.getIcon()
       if( m !== undefined ) {
-        m.marker.setIcon({url: markerActiveImg, size: new window.google.maps.Size(48, 48)})
+        m.defaultIcon = m.marker.getIcon()
+        m.marker.setIcon({url: markerActiveImg, size: markerActiveImgSize, scaledSize: markerActiveImgSize})
         this.state.map.panTo(m.marker.getPosition())
       }
     } else if( nextProps.placeFocused === undefined ) {

@@ -37,6 +37,11 @@ class Controls extends React.Component {
     this.handlePlaceClick({index: undefined})
   }
 
+  componentDidUpdate() {
+    // Remove focus from searchInput if pane is closed
+    if( !this.props.showing && this.searchInput ) this.searchInput.blur()
+  }
+
   render() {
 
     const placeFocusedData = _.find(this.props.places, {index: this.props.placeFocused})

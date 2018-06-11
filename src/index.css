@@ -60,7 +60,7 @@ input:focus {
   z-index: 99;
   top: 0;
   right: 0;
-  height: 100vh;
+  bottom: 0;
   padding: 4px;
   background-color:#2d5be3;
   font-size: 14px;
@@ -188,7 +188,7 @@ input:focus {
 .places .zoom {
   position: absolute;
   right: 100%;
-  bottom: 4px;
+  bottom: 15px;
   padding: 0 4px 0 0;
   color: #fff;
   font-size: 16px;
