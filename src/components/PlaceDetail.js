@@ -5,6 +5,7 @@ import _ from 'lodash'
 class PlaceDetail extends React.Component {
 
   state = {
+    error: '',
     venue: null,
     venues: []
   }
@@ -20,20 +21,25 @@ class PlaceDetail extends React.Component {
     const dataFetch = fetch(this.foursquareApi + 'venues/search?'+ auth + '&ll='+ latlng + '&query='+ place.name +'&radius=50&intent=browse')
       .then(resp => {
         if( resp.status !== 200 ) {
-          throw new Error('Loading venues from FourSquare failed.')
+          throw new Error('Loading venues from FOURSQUARE failed.')
         }
         return resp.json()
       })
       .then(data => {
+        if( !data.response.venues || data.response.venues.length === 0 ) {
+          throw new Error('No matches on FOURSQUARE for this location/name.')
+        }
+
         this.setState({venues: data.response.venues})
         const venue = _.head(data.response.venues)
         if( venue !== undefined && venue.id ) {
           return fetch(this.foursquareApi + 'venues/'+ venue.id +'?'+ auth)
         }
-        return undefined
+
+        return {status: 404}
       }).then(resp => {
         if( resp.status !== 200 ) {
-          throw new Error('Loading venue data from FourSquare failed.')
+          throw new Error('Loading venue data from FOURSQUARE failed.')
         }
         return resp.json()
       }).then(data => {
@@ -43,7 +49,7 @@ class PlaceDetail extends React.Component {
       })
 
     dataFetch.catch(err => {
-      alert('Ooops! An error occurred.\n'+ err.message)
+      this.setState({error: err.message})
     })
   }
 
@@ -58,21 +64,25 @@ class PlaceDetail extends React.Component {
     return (
       <div className="placeDetail">
         <h1>{place.index}. {place.name}</h1>
-        {venue ? (
-          <div className="fourSquareData">
-            {photo && <div className="photo" style={{backgroundImage:'url('+ photo +')'}}></div>}
-            <ul>
-              <li><strong>Name:</strong> {venue.name}</li>
-              <li><strong>Type:</strong> {_.get(venue, 'categories[0].name', '- Unknown -')}</li>
-              <li><strong>Address:</strong> {_.get(venue, 'location.address', '- Unknown -')}</li>
-              <li><strong>Phone:</strong> {_.get(venue, 'contact.formattedPhone', '- Unknown -')}</li>
-            </ul>
-            <a href={venue.shortUrl} target="_blank">See more at FOURSQUARE ›</a>
+        {this.state.error.length > 0 ?
+          <div className="venue-error">
+            <strong>Oh no!</strong><br/>
+            {this.state.error}
           </div>
-        ) : (
-          <div className="foursquareLoading">
-            Loading info from FOURSQUARE...
-          </div>
+        : (
+          venue ?
+            <div className="fourSquareData">
+              {photo && <div className="photo" style={{backgroundImage:'url('+ photo +')'}}></div>}
+              <ul>
+                <li><strong>Name:</strong> {venue.name}</li>
+                <li><strong>Type:</strong> {_.get(venue, 'categories[0].name', '- Unknown -')}</li>
+                <li><strong>Address:</strong> {_.get(venue, 'location.address', '- Unknown -')}</li>
+                <li><strong>Phone:</strong> {_.get(venue, 'contact.formattedPhone', '- Unknown -')}</li>
+              </ul>
+              <a href={venue.shortUrl} target="_blank">See more at FOURSQUARE ›</a>
+            </div>
+          :
+            <div className="foursquareLoading">Loading info from FOURSQUARE...</div>
         )}
       </div>
     )

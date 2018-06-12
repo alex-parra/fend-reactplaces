@@ -53,19 +53,31 @@ class Controls extends React.Component {
 
     return (
       <div className={'places ' + (!this.props.showing ? 'hide' : 'show')}>
-        <div className="filter">
-          {!this.props.placeFocused
-            ? <div className="search">
-                <input type="text" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
-                <button onClick={this.searchClear}><IconClose /></button>
-              </div>
-            : <button onClick={this.handleReturnList}>return to list</button>
-          }
-        </div>
-
         <button className="toggle" onClick={this.toogleControls}>
           <span>Close</span>
         </button>
+
+        {this.props.showing ?
+          <React.Fragment>
+            <div className="filter">
+              {!this.props.placeFocused
+                ? <div className="search">
+                    <input type="text" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
+                    <button onClick={this.searchClear}><IconClose /></button>
+                  </div>
+                : <button onClick={this.handleReturnList}>return to list</button>
+              }
+            </div>
+
+            {this.props.placeFocused
+              ? <PlaceDetail place={placeFocusedData} key={this.props.placeFocused} />
+              : this.props.places.map(place => (
+                  <button className="place" onClick={() => this.handlePlaceClick(place)} key={'place-'+place.index}>
+                    {place.index}. {place.name}
+                  </button>
+                ))
+            }
+          </React.Fragment> : ''}
 
         <div className="zoom">
           <button onClick={() => this.handleZoomChange('plus')}>
@@ -75,16 +87,6 @@ class Controls extends React.Component {
             <IconMinus />
           </button>
         </div>
-
-        {this.props.placeFocused
-          ? <PlaceDetail place={placeFocusedData} key={this.props.placeFocused} />
-          : this.props.places.map(place => (
-              <div className="place" onClick={() => this.handlePlaceClick(place)} key={'place-'+place.index}>
-                {place.index}. {place.name}
-              </div>
-            ))
-        }
-
       </div>
     )
 

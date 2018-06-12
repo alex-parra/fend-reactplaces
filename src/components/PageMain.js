@@ -57,8 +57,8 @@ class PageMain extends React.Component {
         {this.state.places.length > 0
           ? (
             <React.Fragment>
-              <GoogleMap places={placesShown} zoom={this.state.zoom} placeFocused={this.state.placeFocused} mapClickHandler={this.focusPlace} mapZoomHandler={this.mapZoomHandler} markerClickHandler={this.focusPlace} />
               <Controls showing={this.state.showControls} places={placesShown} searchQuery={this.state.searchQuery} searchHandler={this.searchHandler} zoomHandler={this.adjustZoom} placeHandler={this.focusPlace} placeFocused={this.state.placeFocused} toggleHandler={this.showControlsHandler} />
+              <GoogleMap places={placesShown} zoom={this.state.zoom} placeFocused={this.state.placeFocused} mapClickHandler={this.focusPlace} mapZoomHandler={this.mapZoomHandler} markerClickHandler={this.focusPlace} />
             </React.Fragment>
           ) : (
             <div className="loading">Loading...</div>

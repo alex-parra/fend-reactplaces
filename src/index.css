@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 
 input {
   background-color: #fff;
@@ -10,15 +7,37 @@ input {
   max-width: 100%;
   padding: 4px 5px;
   width: 100%;
+  box-shadow: none;
 }
 
 *:focus {
-  box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+  box-shadow: 0 0 0 2px rgba(231, 177, 0, 0.4);
+  border-radius: 3px;
   outline: none;
 }
 
 input:focus {
   border-color: #80bdff;
+}
+
+button {
+  background-color:#2d5be3;
+  border-radius: 3px;
+  border: none;
+  color: rgba(255,255,255, .8);
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  position: relative;
+}
+
+button:hover {
+  color: rgba(255,255,255, .95);
+}
+
+button:active,
+button:focus {
+  background-color:#3966ec;
 }
 
 #app {
@@ -103,7 +122,6 @@ input:focus {
 }
 
 .places .search button {
-  border: none;
   bottom: 1px;
   color: rgba(0,0,0,.2);
   padding: 0 5px;
@@ -120,14 +138,10 @@ input:focus {
 
 .places .search button:hover {
   color: rgba(0,0,0,.4);
-  cursor: pointer;
 }
 
 .places .filter > button {
   background-color: rgba(255,255,255,.1);
-  border-radius: 3px;
-  border: none;
-  color: rgba(255,255,255,.9);
   display: block;
   font-size: 12px;
   padding: 6px 14px 7px;
@@ -140,8 +154,6 @@ input:focus {
 
 .places .filter > button:hover {
   background-color: rgba(255,255,255,.2);
-  color:#fff;
-  cursor: pointer;
 }
 
 .places .place {
@@ -149,6 +161,10 @@ input:focus {
   cursor: pointer;
   padding-right: 20px;
   padding: 9px 6px;
+  font-size: 1em;
+  text-align: inherit;
+  border: none;
+  background-color: transparent;
 }
 
 .places .place.active {
@@ -169,10 +185,7 @@ input:focus {
 
 .places .toggle,
 .places .toggle:focus {
-  background-color:#2d5be3;
   border-radius: 3px 0 0 3px;
-  border:none;
-  color: rgba(255,255,255, .75);
   font-size: 0;
   height: 36px;
   line-height: 0;
@@ -180,11 +193,6 @@ input:focus {
   right: 100%;
   top: 34px;
   width: 38px;
-}
-
-.places .toggle:hover {
-  color: rgba(255,255,255, .95);
-  cursor: pointer;
 }
 
 .places .toggle span,
@@ -237,15 +245,9 @@ input:focus {
 }
 
 .places .zoom button {
-  background-color:#2d5be3;
-  border-radius: 3px;
-  border: none;
   color: inherit;
-  cursor: pointer;
   display: block;
-  font-size: 1em;
   height: 34px;
-  position: relative;
   width: 34px;
 }
 
@@ -285,6 +287,13 @@ input:focus {
   color: #fff;
   opacity: .75;
   padding: 10px 0;
+}
+
+.venue-error {
+  background-color: #cb0000;
+  border-radius: 3px;
+  margin: 10px -10px 0;
+  padding: 6px 10px 8px;
 }
 
 .fourSquareData {
