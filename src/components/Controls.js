@@ -59,24 +59,26 @@ class Controls extends React.Component {
       <div className={'places ' + placesCssState}>
         <button className="toggle" onClick={this.toogleControls}><span>{toggleLabel}</span></button>
 
-        {this.props.showing &&
+        {this.props.showing && placeIsFocused &&
           <React.Fragment>
-            <div className="filter">
-              {placeIsFocused === true && <button onClick={this.handleReturnList}>return to Places list</button>}
+            <div className="top back">
+              <button onClick={this.handleReturnList}>return to Places list</button>
+            </div>
+            <PlaceDetail place={placeFocusedData} key={this.props.placeFocused} />
+          </React.Fragment>}
 
-              {placeIsFocused !== true &&
-                <div className="search">
-                  <input type="text" aria-label="Search places" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
-                  <button aria-label="Clear search" onClick={this.searchClear}><IconClose /></button>
-                </div>}
+        {this.props.showing && !placeIsFocused &&
+          <React.Fragment>
+            <div className="top search">
+              <input type="text" aria-label="Search places" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
+              <button aria-label="Clear search" onClick={this.searchClear}><IconClose /></button>
             </div>
 
-            {placeIsFocused === true && <PlaceDetail place={placeFocusedData} key={this.props.placeFocused} />}
-
-            {placeIsFocused !== true &&
-              places.map(place => (
-                <button className="place" onClick={() => this.handlePlaceClick(place)} key={'place-' + place.index}>{place.index}. {place.name}</button>
-              ))}
+            {places.map(place => (
+              <button className="place" onClick={() => this.handlePlaceClick(place)} key={place.index}>
+                {place.index +'. '+ place.name}
+              </button>
+            ))}
           </React.Fragment>}
 
         <div className="zoom">

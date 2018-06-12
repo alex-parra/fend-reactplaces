@@ -112,16 +112,14 @@ button:focus {
   transform: translate(100%, 0);
 }
 
-.places .filter {
+.places .top {
   flex: 0 0 auto;
-  padding: 1px 2px 2px;
-}
-
-.places .search {
+  padding: 0 2px;
+  margin: 1px 0 2px;
   position: relative;
 }
 
-.places .search button {
+.places .top.search button {
   bottom: 1px;
   color: rgba(0,0,0,.2);
   padding: 0 5px;
@@ -131,16 +129,16 @@ button:focus {
   background-color: transparent;
 }
 
-.places .search button svg {
+.places .top.search svg {
   display: block;
   width: 16px;
 }
 
-.places .search button:hover {
+.places .top.search button:hover {
   color: rgba(0,0,0,.4);
 }
 
-.places .filter > button {
+.places .top.back button {
   background-color: rgba(255,255,255,.1);
   display: block;
   font-size: 12px;
@@ -148,11 +146,11 @@ button:focus {
   width: 100%;
 }
 
-.places .filter > button::before {
+.places .top.back button::before {
   content: "‹ ";
 }
 
-.places .filter > button:hover {
+.places .top.back button:hover {
   background-color: rgba(255,255,255,.2);
 }
 
