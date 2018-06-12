@@ -7,7 +7,7 @@ React.js app that displays an interactive map with predefined markers.
 
 
 ## Demo
-See https://reactplaces.alexpds.com  
+See https://myplaces.alexpds.com  
 ```
 NOTE: The docs folder is used to serve the app via GitHub Pages
 ```
