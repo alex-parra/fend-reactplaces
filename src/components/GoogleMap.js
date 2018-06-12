@@ -64,7 +64,7 @@ class GoogleMap extends React.Component {
       scaleControl: false,
       fullscreenControl: false,
       streetViewControl: false,
-      zoomControl: false,
+      zoomControl: false
     })
 
     // Create marker for each place

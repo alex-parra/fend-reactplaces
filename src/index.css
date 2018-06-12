@@ -110,6 +110,7 @@ input:focus {
   position: absolute;
   right: 1px;
   top: 1px;
+  background-color: transparent;
 }
 
 .places .search button svg {
