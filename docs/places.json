@@ -4,5 +4,11 @@
   {"name":"Miradouro Pq. Eduardo VII", "lat":38.730299, "lng":-9.15443},
   {"name":"Cinemateca", "lat":38.720885, "lng":-9.148749},
   {"name":"Jardim Botânico", "lat":38.718133, "lng":-9.148729},
-  {"name":"Rest. Doca de Santo", "lat":38.70064, "lng":-9.176301}
+  {"name":"Rest. Doca de Santo", "lat":38.70064, "lng":-9.176301},
+  {"name":"Rest. Baía dos Golfinhos", "lat":38.698467, "lng":-9.275786},
+  {"name":"Piscina Oceânica", "lat":38.676992, "lng":-9.319028},
+  {"name":"MAAT", "lat":38.696291, "lng":-9.194841},
+  {"name":"Oceanário", "lat":38.763645, "lng":-9.093748},
+  {"name":"Expo Skatepark", "lat":38.787191, "lng":-9.091796},
+  {"name":"Jardim Zoológico", "lat":38.742702, "lng":-9.168303}
 ]
