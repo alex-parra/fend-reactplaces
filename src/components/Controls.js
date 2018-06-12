@@ -66,8 +66,8 @@ class Controls extends React.Component {
 
               {placeIsFocused !== true &&
                 <div className="search">
-                  <input type="text" ariaLabel="Search places" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
-                  <button ariaLabel="Clear search" onClick={this.searchClear}><IconClose /></button>
+                  <input type="text" aria-label="Search places" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
+                  <button aria-label="Clear search" onClick={this.searchClear}><IconClose /></button>
                 </div>}
             </div>
 
@@ -80,8 +80,8 @@ class Controls extends React.Component {
           </React.Fragment>}
 
         <div className="zoom">
-          <button ariaLabel="Zoom In" onClick={() => this.handleZoomChange('plus')}><IconPlus /></button>
-          <button ariaLabel="Zoom Out" onClick={() => this.handleZoomChange('minus')}><IconMinus /></button>
+          <button aria-label="Zoom In" onClick={() => this.handleZoomChange('plus')}><IconPlus /></button>
+          <button aria-label="Zoom Out" onClick={() => this.handleZoomChange('minus')}><IconMinus /></button>
         </div>
       </div>
     )
