@@ -1,4 +1,4 @@
-# ReactMap - Udacity FEND React App by Alex Parra
+# ReactPlaces - Udacity FEND React App by Alex Parra
 PWA developed by Alex Parra with React.js for Udacity Frontend Developer Nanodegree.  
 
 
