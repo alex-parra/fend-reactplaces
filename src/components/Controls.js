@@ -49,43 +49,39 @@ class Controls extends React.Component {
 
   render() {
 
+    const places = this.props.places
+    const placesCssState = !this.props.showing ? 'hide' : 'show'
+    const placeIsFocused = this.props.placeFocused > 0
     const placeFocusedData = _.find(this.props.places, {index: this.props.placeFocused})
+    const toggleLabel = this.props.showing ? 'Hide Places List' : 'Show Places List'
 
     return (
-      <div className={'places ' + (!this.props.showing ? 'hide' : 'show')}>
-        <button className="toggle" onClick={this.toogleControls}>
-          <span>Close</span>
-        </button>
+      <div className={'places ' + placesCssState}>
+        <button className="toggle" onClick={this.toogleControls}><span>{toggleLabel}</span></button>
 
-        {this.props.showing ?
+        {this.props.showing &&
           <React.Fragment>
             <div className="filter">
-              {!this.props.placeFocused
-                ? <div className="search">
-                    <input type="text" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
-                    <button onClick={this.searchClear}><IconClose /></button>
-                  </div>
-                : <button onClick={this.handleReturnList}>return to list</button>
-              }
+              {placeIsFocused === true && <button onClick={this.handleReturnList}>return to Places list</button>}
+
+              {placeIsFocused !== true &&
+                <div className="search">
+                  <input type="text" ariaLabel="Search places" autoFocus defaultValue={this.props.searchQuery} placeholder="Search..." ref={input => this.searchInput = input} onChange={this.handleInputChange} />
+                  <button ariaLabel="Clear search" onClick={this.searchClear}><IconClose /></button>
+                </div>}
             </div>
 
-            {this.props.placeFocused
-              ? <PlaceDetail place={placeFocusedData} key={this.props.placeFocused} />
-              : this.props.places.map(place => (
-                  <button className="place" onClick={() => this.handlePlaceClick(place)} key={'place-'+place.index}>
-                    {place.index}. {place.name}
-                  </button>
-                ))
-            }
-          </React.Fragment> : ''}
+            {placeIsFocused === true && <PlaceDetail place={placeFocusedData} key={this.props.placeFocused} />}
+
+            {placeIsFocused !== true &&
+              places.map(place => (
+                <button className="place" onClick={() => this.handlePlaceClick(place)} key={'place-' + place.index}>{place.index}. {place.name}</button>
+              ))}
+          </React.Fragment>}
 
         <div className="zoom">
-          <button onClick={() => this.handleZoomChange('plus')}>
-            <IconPlus />
-          </button>
-          <button onClick={() => this.handleZoomChange('minus')}>
-            <IconMinus />
-          </button>
+          <button ariaLabel="Zoom In" onClick={() => this.handleZoomChange('plus')}><IconPlus /></button>
+          <button ariaLabel="Zoom Out" onClick={() => this.handleZoomChange('minus')}><IconMinus /></button>
         </div>
       </div>
     )

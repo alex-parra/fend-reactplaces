@@ -56,6 +56,7 @@ class PlaceDetail extends React.Component {
   render() {
     const place = this.props.place
     const venue = this.state.venue
+    const hasError = this.state.error && this.state.error.length > 0
     let photo = ''
     if( venue && venue.bestPhoto ) {
       photo = venue.bestPhoto.prefix + venue.bestPhoto.width +'x'+ venue.bestPhoto.height + venue.bestPhoto.suffix
@@ -64,26 +65,21 @@ class PlaceDetail extends React.Component {
     return (
       <div className="placeDetail">
         <h1>{place.index}. {place.name}</h1>
-        {this.state.error.length > 0 ?
-          <div className="venue-error">
-            <strong>Oh no!</strong><br/>
-            {this.state.error}
-          </div>
-        : (
-          venue ?
-            <div className="fourSquareData">
-              {photo && <div className="photo" style={{backgroundImage:'url('+ photo +')'}}></div>}
-              <ul>
-                <li><strong>Name:</strong> {venue.name}</li>
-                <li><strong>Type:</strong> {_.get(venue, 'categories[0].name', '- Unknown -')}</li>
-                <li><strong>Address:</strong> {_.get(venue, 'location.address', '- Unknown -')}</li>
-                <li><strong>Phone:</strong> {_.get(venue, 'contact.formattedPhone', '- Unknown -')}</li>
-              </ul>
-              <a href={venue.shortUrl} target="_blank">See more at FOURSQUARE ›</a>
-            </div>
-          :
-            <div className="foursquareLoading">Loading info from FOURSQUARE...</div>
-        )}
+        {hasError !== true && !venue && <div className="foursquareLoading">Loading info from FOURSQUARE...</div>}
+
+        {hasError === true && <div className="venue-error"><strong>Oh no!</strong><br/>{this.state.error}</div>}
+
+        {hasError !== true && venue &&
+          <div className="fourSquareData">
+            {photo && <div className="photo" style={{backgroundImage:'url('+ photo +')'}}></div>}
+            <ul>
+              <li><strong>Name:</strong> {venue.name}</li>
+              <li><strong>Type:</strong> {_.get(venue, 'categories[0].name', '- Unknown -')}</li>
+              <li><strong>Address:</strong> {_.get(venue, 'location.address', '- Unknown -')}</li>
+              <li><strong>Phone:</strong> {_.get(venue, 'contact.formattedPhone', '- Unknown -')}</li>
+            </ul>
+            <a href={venue.shortUrl} target="_blank">See more at FOURSQUARE ›</a>
+          </div>}
       </div>
     )
   }

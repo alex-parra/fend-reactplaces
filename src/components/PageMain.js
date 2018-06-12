@@ -54,15 +54,13 @@ class PageMain extends React.Component {
     const placesShown = _.filter(this.state.places, p => searchRegex.test(_.deburr(p.name)))
     return (
       <div className="page-main">
-        {this.state.places.length > 0
-          ? (
-            <React.Fragment>
-              <Controls showing={this.state.showControls} places={placesShown} searchQuery={this.state.searchQuery} searchHandler={this.searchHandler} zoomHandler={this.adjustZoom} placeHandler={this.focusPlace} placeFocused={this.state.placeFocused} toggleHandler={this.showControlsHandler} />
-              <GoogleMap places={placesShown} zoom={this.state.zoom} placeFocused={this.state.placeFocused} mapClickHandler={this.focusPlace} mapZoomHandler={this.mapZoomHandler} markerClickHandler={this.focusPlace} />
-            </React.Fragment>
-          ) : (
-            <div className="loading">Loading...</div>
-          )
+        {this.state.places.length > 0 ?
+          <React.Fragment>
+            <Controls showing={this.state.showControls} places={placesShown} searchQuery={this.state.searchQuery} searchHandler={this.searchHandler} zoomHandler={this.adjustZoom} placeHandler={this.focusPlace} placeFocused={this.state.placeFocused} toggleHandler={this.showControlsHandler} />
+            <GoogleMap places={placesShown} zoom={this.state.zoom} placeFocused={this.state.placeFocused} mapClickHandler={this.focusPlace} mapZoomHandler={this.mapZoomHandler} markerClickHandler={this.focusPlace} />
+          </React.Fragment>
+          :
+          <div className="loading">Loading...</div>
         }
       </div>
     )
